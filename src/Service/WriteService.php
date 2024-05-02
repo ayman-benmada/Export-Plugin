@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Abenmada\ExportPlugin\Service;
 
+use function array_key_exists;
 use DateTime;
+use function explode;
 use PhpOffice\PhpSpreadsheet\Exception;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use function range;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-use function array_key_exists;
-use function explode;
-use function range;
-
-final class WriteService implements WriteServiceInterface
+final readonly class WriteService implements WriteServiceInterface
 {
     public function __construct(private TranslatorInterface $translator)
     {
@@ -36,7 +35,7 @@ final class WriteService implements WriteServiceInterface
         $col = 'A';
 
         foreach ($properties as $property) {
-            $coordinate = $col++ . '1'; // @phpstan-ignore-line
+            $coordinate = $col++ . '1';
 
             $sheet->setCellValue($coordinate, $this->translator->trans($property['label']));
             $sheet->getStyle($coordinate)->getAlignment()->setWrapText(true);
@@ -46,7 +45,7 @@ final class WriteService implements WriteServiceInterface
             $col = 'A';
 
             foreach ($properties as $property) {
-                $coordinate = $col++ . ($key + 2); // @phpstan-ignore-line
+                $coordinate = $col++ . ($key + 2);
 
                 $sheet->setCellValue($coordinate, $this->getCellValue($resource, $property['getter'], $property['options']));
                 $sheet->getStyle($coordinate)->getAlignment()->setWrapText(true);
@@ -135,7 +134,7 @@ final class WriteService implements WriteServiceInterface
      */
     private function setDefaultStyle(Spreadsheet $spreadsheet, array $style): void
     {
-        if (! array_key_exists('size', $style)) {
+        if (!array_key_exists('size', $style)) {
             return;
         }
 
@@ -144,15 +143,15 @@ final class WriteService implements WriteServiceInterface
 
     private function setSecurity(Spreadsheet $spreadsheet, array $security): void
     {
-        if (! array_key_exists('enabled', $security)) {
+        if (!array_key_exists('enabled', $security)) {
             return;
         }
 
-        if (! $security['enabled']) {
+        if (!$security['enabled']) {
             return;
         }
 
-        if (! array_key_exists('password', $security)) {
+        if (!array_key_exists('password', $security)) {
             return;
         }
 

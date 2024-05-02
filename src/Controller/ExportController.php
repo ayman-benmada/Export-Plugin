@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Abenmada\ExportPlugin\Controller;
 
 use Abenmada\ExportPlugin\Service\ProcessServiceInterface;
+use function is_string;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-
-use function is_string;
 
 final class ExportController
 {
@@ -23,7 +22,7 @@ final class ExportController
         $alias = $request->attributes->get('alias');
         $redirectUrl = $request->headers->get('referer');
 
-        if (! is_string($alias)) {
+        if (!is_string($alias)) {
             throw new UnexpectedTypeException($alias, 'string');
         }
 

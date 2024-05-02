@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Abenmada\ExportPlugin\Command;
 
 use Abenmada\ExportPlugin\Service\ProcessServiceInterface;
-use Safe\DateTime;
+use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 final class SaveCommand extends Command
 {
-    public function __construct(private ProcessServiceInterface $processService, ?string $name = null)
+    public function __construct(private readonly ProcessServiceInterface $processService, ?string $name = null)
     {
         parent::__construct($name);
     }
@@ -34,6 +34,7 @@ final class SaveCommand extends Command
         $nowDate = new DateTime();
 
         $alias = $input->getArgument('alias');
+        assert(is_string($alias));
 
         $this->processService->process($alias, null, true);
 

@@ -1,8 +1,8 @@
 parameters:
     paths:
         - src
-    excludes_analyse:
-        - src/DependencyInjection/Configuration.php
+    excludePaths:
+        - src/DependencyInjection/*
     level: max
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false

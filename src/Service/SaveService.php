@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Abenmada\ExportPlugin\Service;
 
+use Abenmada\ExportPlugin\Entity\ExportTypeInterface;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Exception;
@@ -11,9 +12,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Html;
 use PhpOffice\PhpSpreadsheet\Writer\Ods;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Abenmada\ExportPlugin\Entity\ExportTypeInterface;
 
-final class SaveService implements SaveServiceInterface
+final readonly class SaveService implements SaveServiceInterface
 {
     public function __construct(private WriteServiceInterface $writeService)
     {

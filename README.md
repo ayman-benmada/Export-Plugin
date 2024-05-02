@@ -4,10 +4,12 @@
     The Export plugin allows you to export all data of any entity directly from the configuration file.
 </p>
 
+![presentation photo](https://github.com/ayman-benmada/Sylius-Export-Plugin/blob/main/src/Resources/public/presentation.png?raw=true)
+
 ## Documentation
 
-- <strong><a href="https://github.com/ayman-benmada/Export-Plugin/blob/main/docs/configuration.md">Configuration Reference</a></strong>
-- <strong><a href="https://github.com/ayman-benmada/Export-Plugin/blob/main/docs/command.md">Command Reference</a></strong>
+- <strong><a href="https://github.com/ayman-benmada/Sylius-Export-Plugin/blob/main/docs/configuration.md">Configuration Reference</a></strong>
+- <strong><a href="https://github.com/ayman-benmada/Sylius-Export-Plugin/blob/main/docs/command.md">Command Reference</a></strong>
 
 ## Installation
 

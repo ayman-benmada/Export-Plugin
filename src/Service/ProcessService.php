@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Abenmada\ExportPlugin\Service;
 
+use function array_key_exists;
 use Doctrine\ORM\QueryBuilder;
+use function explode;
+use function str_replace;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,17 +15,13 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
-use function array_key_exists;
-use function explode;
-use function str_replace;
 use function time;
 use function ucfirst;
 use function usort;
 
-final class ProcessService implements ProcessServiceInterface
+final readonly class ProcessService implements ProcessServiceInterface
 {
-    private const DEFAULT_METHOD = 'findAll';
+    private const string DEFAULT_METHOD = 'findAll';
 
     public function __construct(
         private DownloadServiceInterface $downloadService,
@@ -46,7 +45,7 @@ final class ProcessService implements ProcessServiceInterface
         // Properties
         $properties = [];
         foreach ($configuration['properties'] as $name => $definition) {
-            if (! $definition['enabled']) {
+            if (!$definition['enabled']) {
                 continue;
             }
 
@@ -69,13 +68,13 @@ final class ProcessService implements ProcessServiceInterface
             $fileName = $this->getFileName($configuration['save']);
             $this->saveService->save($resources, $properties, $fileName, $configuration['save']);
 
-            if (! $callFromSaveCommand) {
+            if (!$callFromSaveCommand) {
                 $this->flashBag->add('success', $this->translator->trans('abenmada_export_plugin.' . $alias . '.export', [], 'flashes'));
             }
         }
 
         // Download
-        if (! $callFromSaveCommand && isset($configuration['download']) && $configuration['download']['enabled']) {
+        if (!$callFromSaveCommand && isset($configuration['download']) && $configuration['download']['enabled']) {
             $fileName = $this->getFileName($configuration['download']);
 
             return $this->downloadService->download($resources, $properties, $fileName, $configuration['download']);
@@ -127,7 +126,10 @@ final class ProcessService implements ProcessServiceInterface
         $result = $repository->$method(...$arguments); // @phpstan-ignore-line
 
         if ($result instanceof QueryBuilder) {
-            return $result->getQuery()->getResult();
+            $result = $result->getQuery()->getResult();
+            assert(is_array($result));
+
+            return $result;
         }
 
         return $result;

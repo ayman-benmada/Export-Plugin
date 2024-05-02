@@ -9,7 +9,7 @@ services:
         exclude: '../../{Service}'
 
 imports:
-    - { resource: "packages/abenmada_service.yaml" }
-    - { resource: "packages/abenmada_action.yaml" }
-    - { resource: "packages/abenmada_grid.yaml" }
-    - { resource: "packages/abenmada_command.yaml" }
+    - { resource: "packages/service.yaml" }
+    - { resource: "packages/action.yaml" }
+    - { resource: "packages/grid.yaml" }
+    - { resource: "packages/command.yaml" }

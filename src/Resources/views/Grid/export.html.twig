@@ -1,0 +1,12 @@
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+
+{% set path = path('abenmada_admin_export', {'alias': options.alias}) %}
+
+{% set color = options.color | default('yellow') %}
+{% set icon = options.icon | default('external alternate') %}
+{% set label = options.label | default('abenmada_export_plugin.ui.export') %}
+
+<a class="ui labeled buttons icon top floating button {{ color }}" href="{{ path }}">
+    <i class="{{ icon }} icon"></i>
+    {{ label | trans }}
+</a>

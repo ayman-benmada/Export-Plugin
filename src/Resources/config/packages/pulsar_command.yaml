@@ -1,0 +1,7 @@
+services:
+    abenmada_export_plugin.command.save:
+        class: Abenmada\ExportPlugin\Command\SaveCommand
+        public: true
+        arguments:
+            - '@abenmada_export_plugin.service.process'
+        tags: [ 'console.command' ]

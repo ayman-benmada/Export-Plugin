@@ -1,0 +1,3 @@
+abenmada_export_plugin:
+    ui:
+        export: Exporter

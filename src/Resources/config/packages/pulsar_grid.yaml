@@ -1,0 +1,258 @@
+sylius_grid:
+    templates:
+        action:
+            abenmada_export: "@ExportPlugin/Grid/export.html.twig"
+
+    grids:
+        sylius_admin_product:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_product
+
+        sylius_admin_order:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_order
+
+        sylius_admin_payment:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_payment
+
+        sylius_admin_shipment:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_shipment
+
+        sylius_admin_customer:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_customer
+
+        sylius_admin_product_review:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_product_review
+
+        sylius_admin_admin_user:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_admin_user
+
+        sylius_admin_inventory:
+            actions:
+                main:
+                    abenmada_export:
+                        type: abenmada_export
+                        options:
+                            alias: sylius_admin_inventory
+
+abenmada_export_plugin:
+    resource:
+        sylius_admin_product:
+            model: sylius.product
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_product
+            properties:
+                code:
+                    label: sylius.ui.code
+                name:
+                    label: sylius.ui.name
+                mainTaxon:
+                    label: sylius.ui.main_taxon
+                    path: getMainTaxon().getName()
+                enabled:
+                    label: sylius.ui.enabled
+                    path: isEnabled
+
+        sylius_admin_inventory:
+            model: sylius.product_variant
+            repository:
+                method: createInventoryListQueryBuilder
+                arguments: [ "%locale%" ]
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_inventory
+            properties:
+                name:
+                    label: sylius.ui.name
+                code:
+                    label: sylius.ui.code
+                onHand:
+                    label: sylius.ui.available_on_hand
+                onHold:
+                    label: sylius.ui.reserved
+
+        sylius_admin_order:
+            model: sylius.order
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_order
+            properties:
+                number:
+                    label: sylius.ui.number
+                customer:
+                    label: sylius.ui.customer
+                    path: getCustomer().getFullName()
+                channel:
+                    label: sylius.ui.channel
+                    path: getChannel().getName()
+                state:
+                    label: sylius.ui.state
+                paymentState:
+                    label: sylius.ui.payment_state
+                shippingState:
+                    label: sylius.ui.shipping_state
+                total:
+                    label: sylius.ui.total
+                currencyCode:
+                    label: sylius.ui.currency
+                checkoutCompletedAt:
+                    label: sylius.ui.date
+                    options:
+                        format: d-m-Y H:i:s
+
+        sylius_admin_payment:
+            model: sylius.payment
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_payment
+            properties:
+                createdAt:
+                    label: sylius.ui.date
+                    options:
+                        format: d-m-Y H:i:s
+                number:
+                    label: sylius.ui.order
+                    path: getOrder().getNumber()
+                channel:
+                    label: sylius.ui.channel
+                    path: getOrder().getChannel().getName()
+                customer:
+                    label: sylius.ui.customer
+                    path: getOrder().getCustomer().getFullName()
+                state:
+                    label: sylius.ui.state
+ 
+        sylius_admin_shipment:
+            model: sylius.shipment
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_shipment
+            properties:
+                createdAt:
+                    label: sylius.ui.created_at
+                    options:
+                        format: d-m-Y H:i:s
+                shippedAt:
+                    label: sylius.ui.shipped_at
+                    options:
+                        format: d-m-Y H:i:s
+                number:
+                    label: sylius.ui.order
+                    path: getOrder().getNumber()
+                channel:
+                    label: sylius.ui.channel
+                    path: getOrder().getChannel().getName()
+                state:
+                    label: sylius.ui.state
+
+        sylius_admin_customer:
+            model: sylius.customer
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_customer
+            properties:
+                firstName:
+                    label: sylius.ui.first_name
+                lastName:
+                    label: sylius.ui.last_name
+                email:
+                    label: sylius.ui.email
+                phoneNumber:
+                    label: sylius.ui.phone_number
+                createdAt:
+                    label: sylius.ui.registration_date
+                    options:
+                        format: d-m-Y H:i
+                enabled:
+                    label: sylius.ui.enabled
+                    path: getUser().isEnabled()
+                verified:
+                    label: sylius.ui.verified
+                    path: getUser().isVerified()
+
+        sylius_admin_product_review:
+            model: sylius.product_review
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_product_review
+            properties:
+                createdAt:
+                    label: sylius.ui.date
+                    options:
+                        format: d-m-Y H:i:s
+                title:
+                    label: sylius.ui.title
+                rating:
+                    label: sylius.ui.rating
+                status:
+                    label: sylius.ui.status
+                reviewSubject:
+                    label: sylius.ui.product
+                    path: getReviewSubject().getName()
+                author:
+                    label: sylius.ui.customer
+                    path: getAuthor().getFullName()
+
+        sylius_admin_admin_user:
+            model: sylius.admin_user
+            download:
+                enabled: true
+                type: xlsx
+                file_name: export_admin_user
+            properties:
+                firstName:
+                    label: sylius.ui.first_name
+                lastName:
+                    label: sylius.ui.last_name
+                username:
+                    label: sylius.ui.username
+                email:
+                    label: sylius.ui.email
+                createdAt:
+                    label: sylius.ui.registration_date
+                    options:
+                        format: d-m-Y H:i
+                enabled:
+                    label: sylius.ui.enabled
+                    path: isEnabled()

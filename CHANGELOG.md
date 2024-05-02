@@ -1,0 +1,8 @@
+# CHANGELOG
+
+## CHANGELOG FOR `1.1.0` (2024-05-02)
+
+#### Details
+
+- TODO
+- TODO

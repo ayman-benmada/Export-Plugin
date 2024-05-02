@@ -1,0 +1,15 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    Abenmada\ExportPlugin\:
+        resource: '../../*'
+        exclude: '../../{Service}'
+
+imports:
+    - { resource: "packages/abenmada_service.yaml" }
+    - { resource: "packages/abenmada_action.yaml" }
+    - { resource: "packages/abenmada_grid.yaml" }
+    - { resource: "packages/abenmada_command.yaml" }

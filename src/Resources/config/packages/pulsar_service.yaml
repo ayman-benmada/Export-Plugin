@@ -1,0 +1,42 @@
+services:
+    Abenmada\ExportPlugin\Service\SaveServiceInterface:
+        alias: abenmada_export_plugin.service.save
+
+    abenmada_export_plugin.service.save:
+        class: Abenmada\ExportPlugin\Service\SaveService
+        public: true
+        arguments:
+            - '@abenmada_export_plugin.service.write'
+
+    Abenmada\ExportPlugin\Service\DownloadServiceInterface:
+        alias: abenmada_export_plugin.service.download
+
+    abenmada_export_plugin.service.download:
+        class: Abenmada\ExportPlugin\Service\DownloadService
+        public: true
+        arguments:
+            - '@abenmada_export_plugin.service.write'
+
+    Abenmada\ExportPlugin\Service\WriteServiceInterface:
+        alias: abenmada_export_plugin.service.write
+
+    abenmada_export_plugin.service.write:
+        class: Abenmada\ExportPlugin\Service\WriteService
+        public: true
+        arguments:
+            - '@translator'
+
+    Abenmada\ExportPlugin\Service\ProcessServiceInterface:
+        alias: abenmada_export_plugin.service.process
+
+    abenmada_export_plugin.service.process:
+        class: Abenmada\ExportPlugin\Service\ProcessService
+        public: true
+        arguments:
+            - '@abenmada_export_plugin.service.download'
+            - '@abenmada_export_plugin.service.save'
+            - '@session.flash_bag'
+            - '@translator'
+            - '@router'
+            - '@service_container'
+            - '%abenmada_export_plugin.resources_definitions%'

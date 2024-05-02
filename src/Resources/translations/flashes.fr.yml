@@ -1,0 +1,24 @@
+abenmada_export_plugin:
+    sylius_admin_product:
+        export: La liste des produits a été exportée avec succès
+
+    sylius_admin_inventory:
+        export: La liste des stocks a été exportée avec succès
+
+    sylius_admin_order:
+        export: La liste des commandes a été exportée avec succès
+
+    sylius_admin_payment:
+        export: La liste des paiements a été exportée avec succès
+
+    sylius_admin_shipment:
+        export: La liste des expéditions a été exportée avec succès
+
+    sylius_admin_customer:
+        export: La liste des clients a été exportée avec succès
+
+    sylius_admin_product_review:
+        export: La liste des avis sur les produits a été exportée avec succès
+
+    sylius_admin_admin_user:
+        export: La liste des administrateurs a été exportée avec succès

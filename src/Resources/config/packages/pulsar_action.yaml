@@ -1,0 +1,6 @@
+services:
+    abenmada_export_plugin.controller.export:
+        class: Abenmada\ExportPlugin\Controller\ExportController
+        public: true
+        arguments: [ '@abenmada_export_plugin.service.process' ]
+        tags: [ 'controller.service_arguments' ]

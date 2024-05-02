@@ -1,0 +1,9 @@
+abenmada_admin_export:
+    path: /export/{alias}
+    methods: [ GET ]
+    requirements:
+        alias: .+
+    defaults:
+        _controller: abenmada_export_plugin.controller.export
+        _sylius:
+            section: admin

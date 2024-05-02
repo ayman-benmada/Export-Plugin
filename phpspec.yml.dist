@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Abenmada\ExportPlugin
+        psr4_prefix: Abenmada\ExportPlugin

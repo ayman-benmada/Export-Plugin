@@ -37,7 +37,7 @@ abenmada_export_plugin:
                 prefix_timestamp: true
                 suffix_timestamp: false
                 file_name: export_customer_save
-                path: public/media
+                path: public/media # Path from project dir
                 metadata:
                     creator: Ayman Benmada
                     lastModifiedBy: Ayman Benmada

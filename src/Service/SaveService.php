@@ -15,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 final readonly class SaveService implements SaveServiceInterface
 {
-    public function __construct(private WriteServiceInterface $writeService)
+    public function __construct(private WriteServiceInterface $writeService, private string $projectDir)
     {
     }
 
@@ -45,6 +45,6 @@ final readonly class SaveService implements SaveServiceInterface
             default => new Xlsx($spreadsheet),
         };
 
-        $writer->save('../' . $path . '/' . $fileName);
+        $writer->save($this->projectDir . '/' . $path . '/' . $fileName);
     }
 }

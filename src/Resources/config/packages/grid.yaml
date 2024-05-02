@@ -190,6 +190,14 @@ abenmada_export_plugin:
                 enabled: true
                 type: xlsx
                 file_name: export_customer
+            save:
+                type: csv
+                enabled: true
+                auto_size: true
+                prefix_timestamp: true
+                suffix_timestamp: false
+                file_name: export_customer_save
+                path: public/media
             properties:
                 firstName:
                     label: sylius.ui.first_name

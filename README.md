@@ -1,4 +1,4 @@
-<h1>Export plugin</h1>
+<h1>Sylius Export Plugin</h1>
 
 <p>
     The Export plugin allows you to export all data of any entity directly from the configuration file.
@@ -16,7 +16,7 @@
 Require plugin with composer :
 
 ```bash
-composer require abenmada/export-plugin
+composer require abenmada/sylius-export-plugin
 ```
 
 Change your `config/bundles.php` file to add the line for the plugin :

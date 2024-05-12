@@ -1,5 +1,5 @@
 {
-    "name": "abenmada/export-plugin",
+    "name": "abenmada/sylius-export-plugin",
     "type": "sylius-plugin",
     "description": "The Export plugin allows you to export all data of any entity directly from the configuration file",
     "keywords": ["sylius", "sylius-plugin", "symfony", "e-commerce", "export"],
